@@ -1,7 +1,8 @@
 function App() {
   return (
     <>
-      <div>This is a Spotify App</div>
+      <button>Home</button>
+      <button>Search</button>
     </>
   );
 }
