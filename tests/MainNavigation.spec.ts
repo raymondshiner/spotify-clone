@@ -4,7 +4,7 @@ const assertButtonVisible = async (page: Page, name: string) => {
     await expect(page.getByRole("button", { name: name })).toBeVisible();
 };
 
-test.describe("Home Page", () => {
+test.describe("Main Navigation", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto("/");
     });
