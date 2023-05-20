@@ -1,18 +1,10 @@
 import { HomePage } from "./HomePage/HomePage";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-
-const darkTheme = createTheme({
-    palette: {
-        mode: "dark",
-    },
-});
-
+import { AppThemeProvider } from "./theme";
 function App() {
     return (
-        <ThemeProvider theme={darkTheme}>
-            <CssBaseline />
+        <AppThemeProvider>
             <HomePage />
-        </ThemeProvider>
+        </AppThemeProvider>
     );
 }
 
