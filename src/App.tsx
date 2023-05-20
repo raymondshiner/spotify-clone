@@ -1,9 +1,10 @@
-import { HomePage } from "./HomePage/HomePage";
+import { MainNavigation } from "./MainNavigation/MainNavigation";
 import { AppThemeProvider } from "./theme";
+
 function App() {
     return (
         <AppThemeProvider>
-            <HomePage />
+            <MainNavigation />
         </AppThemeProvider>
     );
 }
