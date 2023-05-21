@@ -9,14 +9,22 @@ import {
     styled,
     CSSObject,
     Theme,
+    Card,
+    Grid,
+    Box,
+    Chip,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import { Search } from "@mui/icons-material";
+import { SpotifyChip } from "../components/SpotifyChip";
 
 const drawerWidth = 350;
 
-const openedMixin = (theme: Theme): CSSObject => ({
-    width: drawerWidth,
+const bothMixins = (theme: Theme): CSSObject => ({
+    backgroundColor: "transparent",
+    borderRight: "none",
+    padding: theme.spacing(1),
+    gap: theme.spacing(1),
     transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -24,12 +32,13 @@ const openedMixin = (theme: Theme): CSSObject => ({
     overflowX: "hidden",
 });
 
+const openedMixin = (theme: Theme): CSSObject => ({
+    width: drawerWidth,
+    ...bothMixins(theme),
+});
+
 const closedMixin = (theme: Theme): CSSObject => ({
-    transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: "hidden",
+    ...bothMixins(theme),
     width: `calc(${theme.spacing(7)} + 1px)`,
     [theme.breakpoints.up("sm")]: {
         width: `calc(${theme.spacing(8)} + 1px)`,
@@ -56,29 +65,42 @@ const Drawer = styled(MuiDrawer, {
 export const MainNavigation = () => {
     return (
         <Drawer variant="permanent" open={true}>
-            <ListItem>
+            <Card>
                 <ListItemButton>
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
-                    <ListItemText>Home</ListItemText>
+                    <ListItemText
+                        primaryTypographyProps={{
+                            sx: {
+                                fontWeight: "600",
+                            },
+                        }}
+                    >
+                        Home
+                    </ListItemText>
                 </ListItemButton>
-            </ListItem>
-            <ListItem>
                 <ListItemButton>
                     <ListItemIcon>
                         <Search />
                     </ListItemIcon>
                     <ListItemText>Search</ListItemText>
                 </ListItemButton>
-            </ListItem>
-            <Button>Your Library</Button>
-            <Button>Playlists</Button>
-            <Button>Podcasts & Shows</Button>
-            <Button>Albums</Button>
-            <Button>Artists</Button>
-            <Button>Downloaded</Button>
-            <NewPlaylistButton />
+            </Card>
+            <Card
+                sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
+            >
+                <Button>Your Library</Button>
+                <NewPlaylistButton />
+                <Box display="flex" flexWrap="wrap" gap="0.5rem" padding={0.5}>
+                    <SpotifyChip label="Playlists" />
+                    <SpotifyChip label="Podcasts & Shows" />
+                    <SpotifyChip label="Albums" />
+                    <SpotifyChip label="Artists" />
+                    <SpotifyChip label="Downloaded" />
+                    <Chip label="Downloaded" />
+                </Box>
+            </Card>
         </Drawer>
     );
 };
