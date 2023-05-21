@@ -1,22 +1,20 @@
-import { NewPlaylistButton } from "./NewPlaylistButton";
+import { Search } from "@mui/icons-material";
+import HomeIcon from "@mui/icons-material/Home";
+import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import {
-    Button,
-    Drawer as MuiDrawer,
-    ListItem,
+    Box,
+    CSSObject,
+    Card,
+    Chip,
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    styled,
-    CSSObject,
+    Drawer as MuiDrawer,
     Theme,
-    Card,
-    Grid,
-    Box,
-    Chip,
+    styled,
 } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import { Search } from "@mui/icons-material";
 import { SpotifyChip } from "../components/SpotifyChip";
+import { NewPlaylistButton } from "./NewPlaylistButton";
 
 const drawerWidth = 350;
 
@@ -70,15 +68,7 @@ export const MainNavigation = () => {
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
-                    <ListItemText
-                        primaryTypographyProps={{
-                            sx: {
-                                fontWeight: "600",
-                            },
-                        }}
-                    >
-                        Home
-                    </ListItemText>
+                    <ListItemText>Home</ListItemText>
                 </ListItemButton>
                 <ListItemButton>
                     <ListItemIcon>
@@ -90,7 +80,38 @@ export const MainNavigation = () => {
             <Card
                 sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
             >
-                <Button>Your Library</Button>
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        padding: 2,
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            cursor: "pointer",
+                            "& .MuiTypography-root, & .MuiSvgIcon-root": {
+                                transition:
+                                    "color 0.3s ease-in-out, fill 0.3s ease-in-out",
+                            },
+                            "&:hover": {
+                                "& .MuiTypography-root, & .MuiSvgIcon-root": {
+                                    color: "white",
+                                    fill: "white",
+                                    transition:
+                                        "color 0.3s ease-in-out, fill 0.3s ease-in-out",
+                                },
+                            },
+                        }}
+                    >
+                        <ListItemIcon>
+                            <LibraryMusicIcon />
+                        </ListItemIcon>
+                        <ListItemText>Your Library</ListItemText>
+                    </Box>
+                </Box>
                 <NewPlaylistButton />
                 <Box display="flex" flexWrap="wrap" gap="0.5rem" padding={0.5}>
                     <SpotifyChip label="Playlists" />

@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@emotion/react";
-import { PropsWithChildren } from "react";
 import { CssBaseline, createTheme } from "@mui/material";
+import { PropsWithChildren } from "react";
 
 const theme = createTheme({
     palette: {
@@ -29,11 +29,19 @@ const theme = createTheme({
             },
         },
         MuiListItemText: {
-            defaultProps: {
-                primaryTypographyProps: {
-                    sx: {
+            styleOverrides: {
+                root: {
+                    "& .MuiTypography-root": {
                         fontWeight: "600",
+                        color: "#b3b3b3",
                     },
+                },
+            },
+        },
+        MuiSvgIcon: {
+            styleOverrides: {
+                root: {
+                    fill: "#b3b3b3",
                 },
             },
         },
